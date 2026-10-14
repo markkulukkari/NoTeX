@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NoTeX</title>
+    <link rel="stylesheet" href="./node_modules/@digabi/mathquill/build/mathquill.css">
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body aria-busy="true">
+    <div id="boot-screen" class="boot-screen" role="status" aria-live="polite">
+        <div class="boot-card">
+            <div class="boot-brand" aria-hidden="true">No<span class="brand-t">T</span><span class="brand-e">e</span><span class="brand-x">X</span></div>
+            <p class="boot-message">Ladataan kirjastoa…</p>
+            <div class="boot-spinner" aria-hidden="true"></div>
+        </div>
+    </div>
+    <div class="app">
+        <header class="app-bar">
+            <div class="app-bar-left">
+                <div class="app-bar-title" aria-label="NoTeX">
+                    <span class="brand">No<span class="brand-t">T</span><span class="brand-e">e</span><span class="brand-x">X</span></span>
+                </div>
+                <nav class="app-actions" aria-label="Tiedosto">
+                    <button type="button" class="icon-btn" data-action="new" title="Uusi (Ctrl+N)" aria-label="Uusi">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M5.1 2.4h9.2L19.7 7.8V21.6H5.1V2.4zm7.9 1.8v4.5h4.5"/>
+                            <path d="M11.1 12h1.8v2.4h2.4v1.8h-2.4v2.4h-1.8v-2.4H8.7v-1.8h2.4z"/>
+                        </svg>
+                    </button>
+                    <button type="button" class="icon-btn" data-action="save" title="Tallenna (Ctrl+S)" aria-label="Tallenna">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path fill-rule="evenodd" d="M3.4 2.6h13.1L21 7.2V21.4H3.4V2.6zm2.4 9.6h12.4v7.4H5.8v-7.4zm8.8-8h3.6v4.4h-3.6V4.2z"/>
+                        </svg>
+                    </button>
+                    <button type="button" class="icon-btn" data-action="open" title="Avaa (Ctrl+O)" aria-label="Avaa">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M2.4 6.2h7.1l1.8 2.2h10.3v12.2H2.4V6.2zm1.9 3.6v9h15.4V10H10.6l-1.8-2.2H4.3v2z"/>
+                        </svg>
+                    </button>
+                    <button type="button" class="icon-btn" data-action="copy" title="Kopioi kaikki (Ctrl+Shift+C)" aria-label="Kopioi kaikki">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M8.2 2.8h12.2v14.6H8.2V2.8zm1.8 1.8v11h8.6v-11H10z"/>
+                            <path d="M3.6 6.6h3.2v1.8H5.4v11h8.2V21H3.6V6.6z"/>
+                        </svg>
+                    </button>
+                </nav>
+            </div>
+            <div class="app-bar-center">
+                <span id="file-name" class="file-name" aria-live="polite"></span>
+            </div>
+            <div class="app-bar-right">
+                <nav class="app-edit-actions" aria-label="Muokkaus">
+                    <button type="button" class="icon-btn" data-action="undo" title="Kumoa (Ctrl+Z)" aria-label="Kumoa">
+                        <svg class="undo-redo-icon" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M9 14 4 9l5-5"/>
+                            <path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11"/>
+                        </svg>
+                    </button>
+                    <button type="button" class="icon-btn" data-action="redo" title="Tee uudelleen (Ctrl+Y)" aria-label="Tee uudelleen">
+                        <svg class="undo-redo-icon" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M15 14l5-5-5-5"/>
+                            <path d="M20 9H9.5a5.5 5.5 0 0 0 0 11H13"/>
+                        </svg>
+                    </button>
+                </nav>
+                <button type="button" class="icon-btn" data-action="text-zoom-out" title="Pienennä tekstiä (Ctrl+-)" aria-label="Pienennä tekstiä">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M12 3.2a8.8 8.8 0 1 1 0 17.6 8.8 8.8 0 0 1 0-17.6zm0 2.2a6.6 6.6 0 1 0 0 13.2 6.6 6.6 0 0 0 0-13.2zM7.6 11.1h8.8v1.8H7.6z"/>
+                    </svg>
+                </button>
+                <span id="text-zoom-label" class="zoom-level" aria-live="polite">100 %</span>
+                <button type="button" class="icon-btn" data-action="text-zoom-in" title="Suurenna tekstiä (Ctrl++)" aria-label="Suurenna tekstiä">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M12 3.2a8.8 8.8 0 1 1 0 17.6 8.8 8.8 0 0 1 0-17.6zm0 2.2a6.6 6.6 0 1 0 0 13.2 6.6 6.6 0 0 0 0-13.2zM11.1 7.6h1.8v3.5h3.5v1.8h-3.5v3.5h-1.8v-3.5H7.6v-1.8h3.5V7.6z"/>
+                    </svg>
+                </button>
+            </div>
+        </header>
+
+        <main class="editor-wrap">
+            <div id="rich-text-editor-root"></div>
+        </main>
+    </div>
+
+    <input id="file-open" type="file" accept=".html,.htm,.txt" hidden>
+
+    <script>
+        window.__notexReady = new Promise((resolve) => {
+            const boot = () => {
+                const load = (src) =>
+                    new Promise((ok, fail) => {
+                        const script = document.createElement("script");
+                        script.src = src;
+                        script.onload = ok;
+                        script.onerror = fail;
+                        document.body.appendChild(script);
+                    });
+                requestAnimationFrame(() => {
+                    requestAnimationFrame(async () => {
+                        try {
+                            await load("./node_modules/rich-text-editor/dist/rich-text-editor-bundle.js");
+                            await load("./app.js");
+                            resolve();
+                        } catch (error) {
+                            console.error(error);
+                            resolve();
+                        }
+                    });
+                });
+            };
+            if (document.readyState === "loading") {
+                document.addEventListener("DOMContentLoaded", boot, { once: true });
+            } else {
+                boot();
+            }
+        });
+    </script>
+</body>
+</html>

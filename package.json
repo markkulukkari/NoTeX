@@ -1,0 +1,52 @@
+{
+  "name": "notex",
+  "version": "1.0.0",
+  "description": "NoTeX — kaavaeditori Windowsille",
+  "main": "electron/main.cjs",
+  "type": "module",
+  "scripts": {
+    "start": "electron .",
+    "serve": "npx --yes serve .",
+    "dist": "electron-builder --win nsis"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "rich-text-editor": "^8.13.0"
+  },
+  "devDependencies": {
+    "electron": "^38.2.0",
+    "electron-builder": "^26.0.12"
+  },
+  "build": {
+    "appId": "fi.notex.app",
+    "productName": "NoTeX",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "electron/**/*",
+      "index.html",
+      "app.js",
+      "style.css",
+      "package.json"
+    ],
+    "asarUnpack": [
+      "node_modules/mathjax/**",
+      "node_modules/mathjax-node/**",
+      "node_modules/rich-text-editor/server/**"
+    ],
+    "win": {
+      "target": "nsis",
+      "icon": "electron/icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "NoTeX"
+    }
+  }
+}

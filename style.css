@@ -1,0 +1,273 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+.math-editor {
+    overflow: visible;
+}
+
+.math-editor-equation-field {
+    min-height: 52px;
+    overflow: visible;
+    padding-top: 12px;
+    padding-bottom: 8px;
+}
+
+.math-editor-equation-field .mq-editable-field,
+.math-editor-equation-field .mq-root-block {
+    overflow: visible !important;
+    min-height: 1.7em;
+}
+
+html,
+body {
+    margin: 0;
+    height: 100%;
+    background: #1f4b6e;
+    color: #1f2933;
+    font-family: "Segoe UI", Tahoma, sans-serif;
+}
+
+.boot-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: grid;
+    place-items: center;
+    background: #1f4b6e;
+    color: #f4efe4;
+    transition: opacity 0.22s ease;
+}
+
+.boot-screen.is-done {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.boot-card {
+    display: grid;
+    justify-items: center;
+    gap: 18px;
+    text-align: center;
+}
+
+.boot-brand {
+    font-family: Palatino, "Palatino Linotype", "Book Antiqua", "Times New Roman", serif;
+    font-weight: 700;
+    font-size: 42px;
+    letter-spacing: 0.01em;
+    line-height: 1;
+}
+
+.boot-message {
+    margin: 0;
+    font-size: 16px;
+    letter-spacing: 0.02em;
+}
+
+.boot-spinner {
+    width: 34px;
+    height: 34px;
+    border: 3px solid rgba(244, 239, 228, 0.28);
+    border-top-color: #ff6b5c;
+    border-radius: 50%;
+    animation: boot-spin 0.8s linear infinite;
+}
+
+@keyframes boot-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.app {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 100vh;
+}
+
+.app-bar {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 8px 12px;
+    padding: 8px 16px;
+    background: #1f4b6e;
+    color: #fff;
+    z-index: 20;
+    flex-shrink: 0;
+}
+
+.app-bar-left,
+.app-bar-right {
+    display: flex;
+    align-items: center;
+    min-width: 0;
+}
+
+.app-bar-left {
+    gap: 22px;
+}
+
+.app-bar-right {
+    justify-content: flex-end;
+    gap: 2px;
+}
+
+.app-bar-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 0;
+}
+
+.app-edit-actions {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    margin-right: 8px;
+}
+
+.app-bar-title {
+    line-height: 1;
+    margin-right: 8px;
+}
+
+.brand {
+    font-family: Palatino, "Palatino Linotype", "Book Antiqua", "Times New Roman", serif;
+    font-weight: 700;
+    font-size: 26px;
+    letter-spacing: 0.01em;
+    color: #f4efe4;
+}
+
+.brand-e {
+    display: inline-block;
+    font-size: 0.82em;
+    font-style: italic;
+    position: relative;
+    top: 0.28em;
+    margin: 0 -0.07em;
+}
+
+.brand-x {
+    color: #ff6b5c;
+}
+
+.icon-btn svg.undo-redo-icon {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.app-actions {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+
+.icon-btn {
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    padding: 6px;
+    border: 0;
+    border-radius: 8px;
+    background: transparent;
+    color: #fff;
+    cursor: pointer;
+    overflow: visible;
+}
+
+.icon-btn svg {
+    width: 26px;
+    height: 26px;
+    fill: currentColor;
+}
+
+.icon-btn:hover {
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.icon-btn:focus-visible {
+    outline: 2px solid #ff6b5c;
+    outline-offset: 2px;
+}
+
+.zoom-level {
+    min-width: 3.4em;
+    padding: 0 4px;
+    text-align: center;
+    font-size: 13px;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+    user-select: none;
+}
+
+.file-name {
+    max-width: 36vw;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 13px;
+    opacity: 0.92;
+}
+
+.file-name:empty {
+    display: none;
+}
+
+.editor-wrap {
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 0 0 16px;
+}
+
+#rich-text-editor-root {
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    margin: 0 20px;
+}
+
+.rich-text-editor-toolbar-root {
+    flex-shrink: 0;
+    background: #fff;
+}
+
+/* Kirjasto kiinnittää palkin näytön yläreunaan. Pidä se tekstikentän yläpuolella. */
+.rich-text-editor-toolbar-root [data-testid="toolbar"] {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    width: 100% !important;
+}
+
+#rich-text-editor-root .rich-text-editor {
+    flex: 1;
+    min-height: 280px;
+    overflow: auto;
+    background: #fff;
+    font: 18px "Times New Roman", Times, serif;
+    padding: 16px 18px !important;
+    zoom: var(--answer-zoom, 1);
+}
+
+/* CSS-zoom särkee MathQuillin yläindeksit. Palauta kenttä zoomaukseen 1. */
+#rich-text-editor-root .math-editor {
+    zoom: calc(1 / var(--answer-zoom, 1));
+}
+
+#rich-text-editor-root .rich-text-editor:focus {
+    outline-color: #1f4b6e !important;
+}
